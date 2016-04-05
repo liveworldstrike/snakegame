@@ -28,7 +28,7 @@ public class Segment
     }
     
     /**
-     * dibuja la serpiente los 3 segmentos 
+     * crea un segmento
      */
     public void dibujar(Canvas canvas)
     {
@@ -52,6 +52,30 @@ public class Segment
       
     }
     
+    /**
+     * borra el segmento añadido 
+     */
+    public void borrar(Canvas canvas)
+    {
+      canvas.setForegroundColor(Color.white);
+      //hacia arriba
+      if (direccion == 0){
+          canvas.drawLine(posicionX,posicionY,posicionX,posicionY - LONGITUD_SEGMENTO);
+      }
+      //hacia abajo
+      else if (direccion == 1){
+          canvas.drawLine(posicionX,posicionY,posicionX,posicionY + LONGITUD_SEGMENTO);
+      }
+      //izquierda 
+      else if (direccion == 2){
+         canvas.drawLine(posicionX,posicionY,posicionX- LONGITUD_SEGMENTO,posicionY); 
+      }
+      //derecha 
+      else if (direccion == 3){
+          canvas.drawLine(posicionX,posicionY ,posicionX + LONGITUD_SEGMENTO,posicionY);
+      }
+      
+    }
    
     
     
