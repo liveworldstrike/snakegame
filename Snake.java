@@ -17,7 +17,7 @@ public class Snake
     private ArrayList<Segment> segmentos;   
     private static final int DIFERENCIA_DE_GRADOS_ENTRE_DIRECCIONES = 90;
     private static final int MARGEN_LIENZO = 10;
-  
+    private static final int TAMANO_CABEZA = 8;
 
     /**
      * Constructor de la clase Snake
@@ -40,16 +40,22 @@ public class Snake
         for (Segment segmento : segmentos) {
             segmento.dibujar(lienzo);
         }
+        lienzo.setForegroundColor(Color.BLACK);
+        Segment ultimoSegmento = segmentos.get(segmentos.size()-1);
+        lienzo.fillCircle(ultimoSegmento.getPosicionFinalX()-(TAMANO_CABEZA/2),ultimoSegmento.getPosicionFinalY()-(TAMANO_CABEZA/2), TAMANO_CABEZA);
     }
 
-    /*
+    /**
      * Borra la serpiente del lienzo dado
      */
     public void borrar(Canvas lienzo)
     {
         for (Segment segmento : segmentos) {
             segmento.borrar(lienzo);
-        }             
+        }  
+        lienzo.setForegroundColor(Color.WHITE);
+        Segment ultimoSegmento = segmentos.get(segmentos.size()-1);
+        lienzo.fillCircle(ultimoSegmento.getPosicionFinalX()-(TAMANO_CABEZA/2),ultimoSegmento.getPosicionFinalY()-(TAMANO_CABEZA/2), TAMANO_CABEZA);
     }
 
     /**
@@ -138,4 +144,16 @@ public class Snake
         return colisiona;
     }
 
+    /**
+     * metodo para mover la serpiente 
+     */
+    public boolean mover(Canvas lienzo)
+    {
+        boolean puedeSeguir = addSegment();      
+        segmentos.remove(0);                     
+        return puedeSeguir;
+    }
+    
+   
 }
+
